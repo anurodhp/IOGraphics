@@ -324,6 +324,11 @@ public:
 
     IOReturn waitQuietController(void);
 
+    // Declared here, defined IOFramebuffer.cpp:2428 -- called from
+    // IODisplay.cpp:484 (a friend class, see IOFramebuffer.h:277), and
+    // published nowhere. See tools/patch_iographics_gaps.sh.
+    void sysAssertGated(void);
+
 
 protected:
 
