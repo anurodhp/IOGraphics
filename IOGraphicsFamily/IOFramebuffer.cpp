@@ -12897,6 +12897,14 @@ IOReturn IOFramebuffer::setCLUTWithEntries(
 }
 
 //// Gamma
+// Base body -- see tools/patch_iographics_gaps.sh fix 10. Declared at
+// IOFramebuffer.h:396 for vendor subclasses; never published.
+IOReturn IOFramebuffer::diagnoseReport( void * /* param1 */, void * /* param2 */,
+                                        void * /* param3 */, void * /* param4 */ )
+{
+    return (kIOReturnUnsupported);
+}
+
 IOReturn IOFramebuffer::setGammaTable( UInt32 /* channelCount */,
                                        UInt32 /* dataCount */, UInt32 /* dataWidth */, void * /* data */,
                                        bool /* syncToVBL */)
