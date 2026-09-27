@@ -6307,10 +6307,12 @@ void IOFramebuffer::saveFramebuffer(void)
 #if RLOG
 				kern_return_t kr = 
 #endif
-				vm_map_wire( IOPageableMapForAddress( (vm_address_t) __private->saveFramebuffer ),
+				/* was vm_map_wire(); XNU_KERNEL_PRIVATE hides that name, see
+				 * tools/patch_iographics_gaps.sh */
+				vm_map_wire_kernel( IOPageableMapForAddress( (vm_address_t) __private->saveFramebuffer ),
 							 (vm_address_t) __private->saveFramebuffer,
 							 ((vm_address_t) __private->saveFramebuffer) + __private->saveLength,
-							 VM_PROT_READ | VM_PROT_WRITE, FALSE );
+							 VM_PROT_READ | VM_PROT_WRITE, VM_KERN_MEMORY_IOKIT, FALSE );
 				DEBG(thisName, " vm_map_wire(%x)\n", kr);
 
                 if ((this == gIOFBConsoleFramebuffer) || (true == gIOFBSetPreviewImage))
