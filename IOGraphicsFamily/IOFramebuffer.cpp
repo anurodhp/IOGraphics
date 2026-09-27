@@ -2434,6 +2434,20 @@ void IOFramebuffer::sysAssertGated(void)
     SYSASSERTGATED();
 }
 
+// No decode module consumes either buffer on this project (no
+// iogdiagnose) -- see the declaration in IOFramebufferPrivate.h.
+IOReturn IOFramebuffer::gTraceData(void * /* context */, void * /* buffer */, uint16_t * sizeP)
+{
+    if (sizeP) *sizeP = 0;
+    return (kIOReturnUnsupported);
+}
+
+IOReturn IOFramebuffer::agdcTraceData(void * /* context */, void * /* buffer */, uint16_t * sizeP)
+{
+    if (sizeP) *sizeP = 0;
+    return (kIOReturnUnsupported);
+}
+
 void IOFramebuffer::setupCursor(void)
 {
     IOFB_START(setupCursor,0,0,0);

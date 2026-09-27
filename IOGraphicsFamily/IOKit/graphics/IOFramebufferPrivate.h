@@ -329,6 +329,12 @@ public:
     // published nowhere. See tools/patch_iographics_gaps.sh.
     void sysAssertGated(void);
 
+    // breadcrumb_func for GTraceBuffer::make() (IOFramebuffer.cpp:1966,
+    // 1971). No-op: this project has no gtrace decode module for either
+    // buffer to serve data to. See tools/patch_iographics_gaps.sh.
+    static IOReturn gTraceData(void * context, void * buffer, uint16_t * sizeP);
+    static IOReturn agdcTraceData(void * context, void * buffer, uint16_t * sizeP);
+
 
 protected:
 
