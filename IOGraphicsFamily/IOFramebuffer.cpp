@@ -6828,6 +6828,20 @@ IOReturn IOFramebuffer::pmSettingsChange(OSObject * target, const OSSymbol * typ
 
 // system WL
 
+// See the declaration in IOFramebufferPrivate.h for the real call-site
+// reasoning behind kicking on trigger but not on clear.
+void IOFramebuffer::triggerEvent(uint32_t event)
+{
+    atomic_fetch_or(&gIOFBGlobalEvents, static_cast<uint_fast32_t>(event));
+    startThread(false);
+}
+
+uint_fast32_t IOFramebuffer::clearEvent(uint32_t event)
+{
+    return atomic_fetch_and(&gIOFBGlobalEvents,
+            ~static_cast<uint_fast32_t>(event));
+}
+
 void IOFramebuffer::systemWork(OSObject * owner,
                                IOInterruptEventSource * evtSrc, int intCount)
 {

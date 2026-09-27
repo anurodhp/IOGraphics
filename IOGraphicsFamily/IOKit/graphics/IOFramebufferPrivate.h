@@ -133,6 +133,12 @@ protected:
 
     static void systemWork(OSObject * owner,
                            IOInterruptEventSource * evtSrc, int intCount);
+
+    // Reconstructed -- no declaration exists in the published drop. See
+    // tools/patch_iographics_gaps.sh for the real call-site evidence
+    // both semantics (return value, kick-or-not) are inferred from.
+    static void triggerEvent(uint32_t event);
+    static uint_fast32_t clearEvent(uint32_t event);
     static void serverPowerTimeout(OSObject *, IOTimerEventSource *);
 
     IOOptionBits checkPowerWork(IOOptionBits state);
