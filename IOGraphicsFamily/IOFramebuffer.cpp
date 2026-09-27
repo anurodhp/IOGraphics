@@ -150,6 +150,13 @@ enum
 	kDarkWokeTimeout        = 5,
 };
 
+// No real notification-port client exists on this project (no
+// WindowServer-equivalent) to pin this to Apple's real internal
+// revision cutover -- see tools/patch_iographics_gaps.sh. One past this
+// drop's own published IOGRAPHICSTYPES_REV (IOGraphicsTypes.h:34) so the
+// comparison at IOFramebuffer.cpp:8780 can never spuriously be true.
+#define kServerAckProtocolGraphicsTypesRev (IOGRAPHICSTYPES_REV + 1)
+
 enum
 {
 	kIOFBEventCaptureSetting     = 0x00000001,
