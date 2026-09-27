@@ -113,6 +113,11 @@ void IODisplayConnect::recordGTraceToken(
                       tag1, arg1, tag2, arg2, tag3, arg3);
 }
 
+uint64_t IODisplayConnect::getFBRegistryID( void )
+{
+    return (fFBRegID);
+}
+
 IOFramebuffer * IODisplayConnect::getFramebuffer( void )
 {
     IODC_START(initWithConnection,0,0,0);

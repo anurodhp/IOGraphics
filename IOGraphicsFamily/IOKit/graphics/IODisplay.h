@@ -133,6 +133,20 @@ public:
     virtual IOReturn setAttributeForConnection( IOSelect selector, uintptr_t value );
     virtual void joinPMtree ( IOService * driver ) APPLE_KEXT_OVERRIDE;
 
+    // Declared here, defined IODisplayWrangler.cpp -- see
+    // tools/patch_iographics_gaps.sh.
+    uint64_t getFBRegistryID(void);
+    void recordGTraceToken(const uint16_t line,
+                           const uint16_t tag0, const uint64_t fbRegID,
+                           const uint16_t tag1, const uint64_t arg1,
+                           const uint16_t tag2, const uint64_t arg2,
+                           const uint16_t tag3, const uint64_t arg3);
+    void recordGTraceToken(const uint16_t line,
+                           const uint16_t fnID, const uint8_t  fnType,
+                           const uint16_t tag1, const uint64_t arg1,
+                           const uint16_t tag2, const uint64_t arg2,
+                           const uint16_t tag3, const uint64_t arg3);
+
 };
 
 class IODisplay : public IOService
