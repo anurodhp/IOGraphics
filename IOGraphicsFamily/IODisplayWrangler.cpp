@@ -879,6 +879,20 @@ IOReturn IODisplayWrangler::setProperties( OSObject * properties )
 namespace {
 static const OSSymbol *
 sIODWBuiltinPanelPowerKey = OSSymbol::withCString("AAPL,builtin-panel-power");
+
+// Reconstructed from its only real use (builtinPanelPowerNotify, below) --
+// declared nowhere in the published sources. See
+// tools/patch_iographics_gaps.sh. Inert on this project: nothing here
+// parses a kIOMessageServicePropertyChange for
+// AAPL,builtin-panel-power (no WindowServer/AppleGraphicsControl
+// client exists), so this is only the shape the sender needs to build.
+#define IODW_BUILTIN_PANEL_POWER_VERSION 1
+struct IODWBuiltinPanelPower_t
+{
+    uint32_t version;
+    uint64_t mct;
+    bool     state;
+};
 }
 
 /* static */ void
