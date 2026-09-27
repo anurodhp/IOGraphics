@@ -42,6 +42,8 @@
 
 #include "IOGraphicsKTrace.h"
 #include "GMetric.hpp"
+// Real upstream xxHash for XXH64() below -- see tools/patch_iographics_gaps.sh fix 9.
+#include <IOKit/graphics/IOGraphicsXXHash.h>
 
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
