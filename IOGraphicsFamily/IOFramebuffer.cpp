@@ -677,6 +677,10 @@ struct IOFramebufferPrivate
     uint16_t                    fServerMsgCount;     // Current sent server msg
     integer_t                   fServerMsgIDSentPower;
     integer_t                   fServerMsgIDAckedPower;
+    integer_t                   fServerMsgIDSentDim;      // patched, see tools/patch_iographics_gaps.sh
+
+    IOInterruptEventSource *    fCloseWorkES;             // patched, see tools/patch_iographics_gaps.sh
+    bool                        fClosePending;            // patched, see tools/patch_iographics_gaps.sh
 };
 
 /* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
